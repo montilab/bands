@@ -41,12 +41,12 @@ head(df)
 
 ``` 
     band  start    end    name   color opacity
-1 Band 4 309267 310144 Label I #6f4d96    0.96
-2 Band 7  24655  28810 Label D #182844    0.68
-3 Band 9 359082 363749 Label Q #a262a9    0.72
-4 Band 1 141285 143092 Label Y #182844    0.72
-5 Band 4  24444  26772 Label I #6f4d96    0.71
-6 Band 9 409560 414910 Label R #6f4d96    0.50
+1 Band 1 122048 127772 Label P #f3cec9    0.72
+2 Band 4 223957 227019 Label T #6f4d96    0.50
+3 Band 7 449479 457139 Label P #f3cec9    0.86
+4 Band 1  23541  32402 Label R #e7a4b6    0.54
+5 Band 1 151790 156655 Label K #f3cec9    0.83
+6 Band 2 235561 235929 Label G #a262a9    0.91
 ```
 
 ## Plot Bands

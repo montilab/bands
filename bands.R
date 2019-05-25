@@ -1,15 +1,15 @@
 library(plotly)
 
 new.segment <- function(x0, x1, y0, y1, name='', color='black', opacity=0.8) {
-    return(list(x0=x0, x1=x1, xref='x',
-                y0=y0, y1=y1, yref='y',
-                type='rect',
-                fillcolor=color, 
-                line=list(color=color), 
-                opacity=opacity,
-                hoveron='area',
-                hoverinfo=name,
-                layer='above'))
+    return(list(x0 = x0, x1 = x1, xref = 'x',
+                y0 = y0, y1 = y1, yref = 'y',
+                type = 'rect',
+                fillcolor = color, 
+                line = list(color=color), 
+                opacity = opacity,
+                hoveron = 'area',
+                hoverinfo = name,
+                layer = 'above'))
 }
 
 draw.bands <- function(df, bands=NULL, labels=FALSE) {
@@ -31,8 +31,8 @@ draw.bands <- function(df, bands=NULL, labels=FALSE) {
         y1      = y0 + 1
         x0      = x[2]
         x1      = x[3]
-        name    = ifelse(is.na(x[4]), "", x[4])
-        color   = ifelse(is.na(x[5]), "black", x[5])
+        name    = ifelse(is.na(x[4]), '', x[4])
+        color   = ifelse(is.na(x[5]), 'black', x[5])
         opacity = ifelse(is.na(x[6]), 0.8, x[6])
         
         if (!is.na(y0)) {
@@ -51,7 +51,7 @@ draw.bands <- function(df, bands=NULL, labels=FALSE) {
                         showarrow = FALSE)
     
     # Draw shapes
-    p <- layout(plotly_empty(type = 'area'),
+    p <- layout(plotly_empty(type='area'),
                 shapes = shapes,
                 annotations = annotations,
                 autosize = T,
@@ -62,8 +62,8 @@ draw.bands <- function(df, bands=NULL, labels=FALSE) {
         p <- add_trace(p,
                        x = (df$start+df$end)/2, 
                        y = as.integer(bands.findy[df$band])+0.5, 
-                       type="scatter",
-                       mode="markers",
+                       type = 'scatter',
+                       mode = 'markers',
                        opacity = 0,
                        text = df$name,
                        hoveron = 'points',
