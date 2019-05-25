@@ -1,0 +1,55 @@
+    
+---
+output: rmarkdown::github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r echo=FALSE, message=FALSE}
+knitr::opts_chunk$set(message=FALSE, 
+                      comment="",
+                      fig.path = "man/figures/README-")
+source("bands.R")
+```
+
+# bands
+Simple interactive chromosome maps written in R
+
+## Source
+
+```{r, eval=FALSE}
+source("bands.R")
+```
+
+## Example Data
+
+```{r}
+samples <- 250
+bands <- paste('Band', 0:9)
+starts <- sample(1:500000, samples, replace=TRUE)
+ends <- sapply(starts, function(x) x+sample(1:10000, 1))
+names <- paste('Label', sample(LETTERS, samples, replace=TRUE))
+colors <- sample(c('#f3cec9', '#e7a4b6', '#cd7eaf', '#a262a9', '#6f4d96', '#3d3b72', '#182844'), samples, replace=T)
+opacitys <- sample(50:100/100, samples, replace=TRUE)
+
+df <- data.frame(band = sample(bands, samples, replace=TRUE),
+                 start = starts,
+                 end = ends,
+                 name = names,
+                 color = colors,
+                 opacity = opacitys,
+                 stringsAsFactors=FALSE)
+
+dim(df)
+head(df)
+```
+
+## Plot Bands
+
+```{r}
+draw.bands(df)
+```
+
+## Real Data Interactive Examples 
+
+Please visit https://anfederico.github.io/bands/

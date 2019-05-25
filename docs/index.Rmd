@@ -1,0 +1,65 @@
+---
+title: "Bands"
+subtitle: "Real examples with the human genome"
+date: "Last Modified: `r Sys.Date()`"
+output:
+  html_document:
+    theme: united
+    toc: yes
+    toc_depth: 3
+---
+
+```{r, include=FALSE, messages=FALSE, warnings=FALSE}
+knitr::opts_chunk$set(comment="", cache=FALSE)
+source("../bands.R")
+chromosomes <- c(paste("chr", 1:21, sep=""), "chrX", "chrY", "chrM")
+df <- read.table('../data/df.txt', sep="\t", header=TRUE, stringsAsFactors=FALSE)
+```
+
+### Intro
+
+This function is written with chromosome maps in mind but generalized for visualizing much more. All that is required is a data frame of segmants with columns called `band`, `start`, `end`. 
+
+- `band`: Which band does the segmant belong to (y-axis)
+- `start` : Start location of index (x-axis)
+- `end` : End location of index (x-axis)
+
+In the future, I plan to keep it as generalized as possible, maximizing its flexibility and application in various types of analyses. Feel free to suggest ideas, report bugs, or contribute!
+
+### Source
+
+```{r, eval=FALSE}
+source("bands.R")
+```
+
+### Human gene locations
+
+```{r, eval=FALSE}
+chromosomes <- c(paste("chr", 1:21, sep=""), "chrX", "chrY", "chrM")
+df <- read.table('data/df.txt', sep="\t", header=TRUE, stringsAsFactors=FALSE)
+```
+
+### Default plot
+
+```{r}
+df.1 <- df[sample(1:nrow(df), 2500, replace=F),]
+head(df.1)
+draw.bands(df.1, chromosomes, labels=F)
+```
+
+### Add colors to highlight regions of interest
+
+```{r}
+df.2 <- df.1
+df.2$color <- ifelse(sample(c(T, T, T, F), 2500, replace=T), "grey", "firebrick")
+head(df.2)
+draw.bands(df.2, chromosomes, labels=F)
+```
+
+### Add names for hover info
+
+```{r}
+df.3 <- head(df.2, 500)
+head(df.3)
+draw.bands(df.3, chromosomes, labels=T)
+```
