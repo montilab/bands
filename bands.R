@@ -1,7 +1,7 @@
 library(plotly)
 
 # Example data
-samples <- 200
+samples <- 100
 chromosomes <- c(paste('chr', 1:21, sep=""))
 starts <- sample(1:500000, samples, replace=T)
 ends <- sapply(starts, function(x) x+sample(1:10000, 1))
@@ -14,6 +14,21 @@ df = data.frame(band  = sample(chromosomes, 100, replace=T),
                 name  = names,
                 color = colors,
                 stringsAsFactors=FALSE)
+
+head(df)
+# ------
+
+# Real Data
+chromosomes <- c(paste("chr", 1:21, sep=""), "chrX", "chrY", "chrM")
+df <- read.table('data/hg38.txt', sep="\t", header=TRUE, stringsAsFactors=FALSE)
+
+# Randomly reduce the size 
+df <- df[sample(1:nrow(df), 500, replace=FALSE),]
+df$color = "red"
+df[sample(1:nrow(df), 100, replace=FALSE), "color"] <- "gold"
+colnames(df) <- c("band", "name", "start", "end", "color")
+df = df[,c("band", "start", "end", "name", "color")]
+rownames(df) <- NULL
 
 head(df)
 # ------
@@ -31,6 +46,9 @@ new.segment <- function(x0, x1, y0, y1, name='', color='black', opacity=0.8) {
                 layer='above'))
 }
 # ------
+
+# Ensure
+rownames(df) <- NULL
 
 # Formulate segmants
 bands <- chromosomes # sort(unique(df$band)) # Can replace bands with any ordered vector of bands
