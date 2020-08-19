@@ -4,14 +4,15 @@ subtitle: "Real examples with the human genome"
 date: "Last Modified: `r Sys.Date()`"
 output:
   html_document:
-    theme: united
+    theme: flatly
     toc: yes
+    toc_float: false
     toc_depth: 3
 ---
 
 ```{r, include=FALSE, messages=FALSE, warnings=FALSE}
-knitr::opts_chunk$set(comment="", cache=FALSE)
-source("../bands.R")
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, comment="", cache=FALSE)
+devtools::load_all()
 chromosomes <- c(paste("chr", 1:21, sep=""), "chrX", "chrY", "chrM")
 df <- read.table('../data/df.txt', sep="\t", header=TRUE, stringsAsFactors=FALSE)
 ```
@@ -29,7 +30,7 @@ In the future, I plan to keep it as generalized as possible, maximizing its flex
 ### Source
 
 ```{r, eval=FALSE}
-source("bands.R")
+library(bands)
 ```
 
 ### Human gene locations

@@ -1,0 +1,22 @@
+Package: bands
+Title: bands
+Version: 1.0
+Authors@R: c(person(given="Anthony", family="Federico", email="anfed@bu.edu", 
+             role=c("aut","cre")),
+             person(given="Stefano", family="Monti", email="smonti@bu.edu", 
+             role=c("aut")))
+Description: Simple interactive chromosome maps written in R
+Depends: R (>= 3.0.0)
+License: GPL-3 + file LICENSE
+URL: https://github.com/montilab/bands/tools/bands
+Encoding: UTF-8
+RoxygenNote: 7.1.1
+LazyData: false
+Imports:
+    plotly
+Suggests: 
+    devtools,
+    knitr,
+    testthat
+VignetteBuilder: knitr
+BugReports: https://github.com/montilab/bands/issues

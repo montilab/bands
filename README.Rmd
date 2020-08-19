@@ -6,8 +6,8 @@ output: rmarkdown::github_document
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ```{r echo=FALSE, message=FALSE}
-knitr::opts_chunk$set(message=FALSE, comment="", fig.path="man/figures/README-")
-source("bands.R")
+knitr::opts_chunk$set(message=FALSE, warning=FALSE, comment="", fig.path="man/figures/README-")
+devtools::load_all()
 ```
 
 # bands
@@ -16,14 +16,35 @@ Simple interactive chromosome maps written in R
 ## Source
 
 ```{r, eval=FALSE}
-source("bands.R")
+library(bands)
 ```
 
-## Example Data
+## Barebones Example Data
 
 ```{r}
 samples <- 250
-bands <- paste('Band', 0:9)
+bands <- paste('Chromosome', 0:9)
+starts <- sample(1:500000, samples, replace=TRUE)
+ends <- sapply(starts, function(x) x+sample(1:10000, 1))
+
+df <- data.frame(band = sample(bands, samples, replace=TRUE),
+                 start = starts,
+                 end = ends,
+                 stringsAsFactors=FALSE)
+
+dim(df)
+head(df)
+```
+
+### Deafult Plot
+```{r}
+draw.bands(df)
+```
+
+## Detailed Example Data
+```{r}
+samples <- 250
+bands <- paste('Chromosome', 0:9)
 starts <- sample(1:500000, samples, replace=TRUE)
 ends <- sapply(starts, function(x) x+sample(1:10000, 1))
 names <- paste('Label', sample(LETTERS, samples, replace=TRUE))
@@ -42,12 +63,12 @@ dim(df)
 head(df)
 ```
 
-## Plot Bands
-
+### Default Plot
 ```{r}
 draw.bands(df)
 ```
 
-## Real Data Interactive Examples 
-
-Please visit https://anfederico.github.io/bands/
+### Limit or Reorder Bands
+```{r}
+draw.bands(df, bands=c("Chromosome 1", "Chromosome 5", "Chromosome 3"))
+```
